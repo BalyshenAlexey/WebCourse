@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница 1</title>
+</head>
+<body>
+<form action="/page1.php" method="post">
+    <div>
+        <label>
+            Ваше имя: <input type="text" name="clientName" placeholder="Ваше имя">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Ваш комментарий: <textarea name="comment" placeholder="Ваш комментарий"></textarea>
+        </label>
+    </div>
+
+    <div>
+        Выберите необходимые параметры:
+
+        <label>
+            <input type="checkbox" name="parameter" value="1"> Параметр 1
+        </label>
+        <label>
+            <input type="checkbox" name="parameter" value="2"> Параметр 2
+        </label>
+
+        <label>
+            <input type="checkbox" name="parameter" value="3"> Параметр 3
+        </label>
+    </div>
+
+    <div>
+        Выберите необходимое условие:
+
+        <label>
+            <input type="radio" name="condition" value="1">Условие 1
+        </label>
+        <label>
+            <input type="radio" name="condition" value="2">Условие 2
+        </label>
+        <label>
+            <input type="radio" name="condition" value="3">Условие 3
+        </label>
+
+    </div>
+
+    <div>
+        <label>
+            Выберите тариф:
+            <select name="tariff">
+                <option value="1">Тариф 1</option>
+                <option value="2">Тариф 2</option>
+                <option value="3">Тариф 3</option>
+                <option value="4">Тариф 4</option>
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Выберите дополнительные услуги:
+            <select multiple="multiple" name="service">
+                <option value="1">Услуга 1</option>
+                <option value="2">Услуга 2</option>
+                <option value="3">Услуга 3</option>
+                <option value="4">Услуга 4</option>
+            </select>
+        </label>
+    </div>
+
+    <button type="submit">Отправить заявку</button>
+
+
+    <p>
+        <a href="Page2.html">
+            Ссылка на Страницу 2
+        </a>
+    </p>
+
+</form>
+</body>
+</html>
