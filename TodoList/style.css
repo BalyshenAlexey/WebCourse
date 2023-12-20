@@ -1,0 +1,45 @@
+.add-todo-form > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.error-message {
+    color: #f00;
+    display: none;
+}
+
+.invalid {
+    border-color: #f00;
+}
+
+.invalid ~ .error-message {
+    display: block;
+}
+
+.todo-list {
+    padding-left: 0;
+}
+
+.add-button {
+    margin-left: 5px;
+}
+
+.delete-button {
+    margin-left: 5px;
+}
+
+.edit-button {
+    margin-left: 5px;
+}
+
+.save-button {
+    margin-left: 5px;
+}
+
+.cancel-button {
+    margin-left: 5px;
+}
+
+.todo-item + .todo-item{
+ margin-top: 10px;
+}
