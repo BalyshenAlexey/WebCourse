@@ -1,134 +1,131 @@
 (function () {
-    const countries = [{
-        countryName: "Белоруссия",
-        cities: [
-            {
-                cityName: "Минск",
-                population: 1938280,
-            },
-            {
-                cityName: "Гомель",
-                population: 516976,
-            },
-            {
-                cityName: "Могилёв",
-                population: 374655,
-            }
-        ],
-    },
+    const countries = [
         {
-            countryName: "Великобритания",
+            name: "Белоруссия",
             cities: [
                 {
-                    cityName: "Лондон",
-                    population: 8787892,
+                    name: "Минск",
+                    population: 1938280
                 },
                 {
-                    cityName: "Бирмингем",
-                    population: 1141816,
+                    name: "Гомель",
+                    population: 516976
                 },
                 {
-                    cityName: "Лидс",
-                    population: 781700,
-                },
-                {
-                    cityName: "Глазго",
-                    population: 621020,
+                    name: "Могилёв",
+                    population: 374655
                 }
-            ],
+            ]
         },
         {
-            countryName: "Германия",
+            name: "Великобритания",
             cities: [
                 {
-                    cityName: "Берлин",
-                    population: 3520031,
+                    name: "Лондон",
+                    population: 8787892
                 },
                 {
-                    cityName: "Гамбург",
-                    population: 1787408,
+                    name: "Бирмингем",
+                    population: 1141816
                 },
                 {
-                    cityName: "Мюнхен",
-                    population: 1450381,
+                    name: "Лидс",
+                    population: 781700
+                },
+                {
+                    name: "Глазго",
+                    population: 621020
                 }
-            ],
+            ]
         },
         {
-            countryName: "Россия",
+            name: "Германия",
             cities: [
                 {
-                    cityName: "Москва",
-                    population: 13104000,
+                    name: "Берлин",
+                    population: 3520031
                 },
                 {
-                    cityName: "Санкт-Петербург",
-                    population: 5600000,
+                    name: "Гамбург",
+                    population: 1787408
                 },
                 {
-                    cityName: "Новосибирск",
-                    population: 1635000,
-                },
-                {
-                    cityName: "Екатеринбург",
-                    population: 1539000,
+                    name: "Мюнхен",
+                    population: 1450381
                 }
-            ],
+            ]
         },
         {
-            countryName: "Франция",
+            name: "Россия",
             cities: [
                 {
-                    cityName: "Париж",
-                    population: 2229621,
+                    name: "Москва",
+                    population: 13104000
                 },
                 {
-                    cityName: "Марсель",
-                    population: 855393,
+                    name: "Санкт-Петербург",
+                    population: 5600000
                 },
                 {
-                    cityName: "Лион",
-                    population: 500715,
+                    name: "Новосибирск",
+                    population: 1635000
                 },
                 {
-                    cityName: "Тулуза",
-                    population: 458298,
+                    name: "Екатеринбург",
+                    population: 1539000
                 }
-            ],
+            ]
+        },
+        {
+            name: "Франция",
+            cities: [
+                {
+                    name: "Париж",
+                    population: 2229621
+                },
+                {
+                    name: "Марсель",
+                    population: 855393
+                },
+                {
+                    name: "Лион",
+                    population: 500715
+                },
+                {
+                    name: "Тулуза",
+                    population: 458298
+                }
+            ]
         }
     ];
 
-    const getMostCitiesCountryName = function (countries) {
-        let maxCitiesCount = 0;
-
-        countries.forEach(function (country) {
-            const citiesCount = (country.cities).length;
+    function getMostCitiesCountryName(countries) {
+        let maxCitiesCount = countries.reduce((maxCitiesCount, country) => {
+            const citiesCount = country.cities.length;
 
             if (citiesCount > maxCitiesCount) {
                 maxCitiesCount = citiesCount;
             }
-        })
 
-        const countriesWithMaxCitiesCount = (countries.filter(function (country) {
-            return (country.cities).length === maxCitiesCount;
-        }));
-
-        return countriesWithMaxCitiesCount.map(function (country) {
-            return country.countryName;
-        });
-    }
-
-    console.log("Страна/страны с максимальным количеством городов: " + getMostCitiesCountryName(countries).join(", "));
-
-    console.log("Объект с информацией по всем странам вида: ключ – название страны, значение – суммарная численность по стране:");
-    console.log(countries.map(function (country) {
-        const totalPopulation = country.cities.reduce(function (totalPopulation, city) {
-            return totalPopulation + city.population;
+            return maxCitiesCount;
         }, 0);
 
-        return {
-            name: country.countryName,
-            population: totalPopulation,
-        };
-    }))
-})()
+        return countries.filter(country => country.cities.length === maxCitiesCount);
+    }
+
+    console.log("Страна/страны с максимальным количеством городов:");
+    console.log(getMostCitiesCountryName(countries));
+
+    function getObjectWithCountryNameAndTotalPopulation(countries) {
+        const objectWithCountryNameAndTotalPopulation = {};
+
+        countries.forEach(country => {
+            objectWithCountryNameAndTotalPopulation[country.name] = country.cities.reduce((totalPopulation, city) => totalPopulation + city.population, 0);
+        });
+
+        return objectWithCountryNameAndTotalPopulation;
+    }
+
+    console.log("Объект с информацией по всем странам вида: ключ – название страны, значение – суммарная численность по стране:");
+    console.log(getObjectWithCountryNameAndTotalPopulation(countries));
+})();
