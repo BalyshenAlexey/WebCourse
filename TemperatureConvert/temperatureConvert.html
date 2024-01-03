@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Перевод температур</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+<h1>Перевод температур</h1>
+
+<form class="temperature-convert-form" id="temperature-convert-form">
+    <div>
+        <label for="initial-temperature-field">
+            Введите температуру в градусах Цельсия:
+        </label>
+        <input class="initial-temperature-field" id="initial-temperature-field" type="text">
+        <div>
+            Выберите результирующую шкалу:
+            <label>
+                <input class="radio-button" type="radio" name="resulting-scale" value="Kelvin" checked="checked">
+                Кельвина
+            </label>
+            <label>
+                <input class="radio-button" type="radio" name="resulting-scale" value="Fahrenheit"> Фаренгейта
+            </label>
+        </div>
+    </div>
+
+    <button class="convert-button" id="convert-button">Конвертировать</button>
+</form>
+
+<h2>Результат:</h2>
+<div class="result" id="result"></div>
+</body>
+</html>
