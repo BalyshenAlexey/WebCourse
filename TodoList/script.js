@@ -15,20 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const newTodo = document.createElement("li");
-        newTodo.classList.add("todo-item")
+        newTodo.classList.add("todo-item");
 
         function setViewMode() {
             newTodo.innerHTML = `
                     <span class="todo-item-text"></span>
                     <button class="delete-button" type="button">Удалить</button>
                     <button class="edit-button" type="button">Редактировать</button>
-                `;
+            `;
 
             newTodo.querySelector(".todo-item-text").textContent = newTodoText;
 
             newTodo.querySelector(".delete-button").addEventListener("click", function () {
-                newTodo.remove()
-            })
+                newTodo.remove();
+            });
 
             newTodo.querySelector(".edit-button").addEventListener("click", function () {
                 newTodo.innerHTML = `
@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button class="save-button" type="button">Сохранить</button>
                         <button class="cancel-button" type="button">Отменить</button>
                         <div class="error-message">Необходимо указать текст</div>
-                    `;
+                `;
 
                 const editTextField = newTodo.querySelector(".edit-text-field");
                 editTextField.value = newTodoText;
 
-                newTodo.querySelector(".save-button").addEventListener("click", function () {
+                function saveChangedTodoText() {
                     const changedTodoText = editTextField.value.trim();
 
                     editTextField.classList.remove("invalid");
@@ -53,12 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     newTodoText = changedTodoText;
                     setViewMode();
-                })
+                }
+
+                newTodo.querySelector(".edit-text-field").addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        saveChangedTodoText();
+                    }
+                });
+
+                newTodo.querySelector(".save-button").addEventListener("click", saveChangedTodoText);
 
                 newTodo.querySelector(".cancel-button").addEventListener("click", function () {
                     setViewMode();
-                })
-            })
+                });
+            });
         }
 
         setViewMode();
@@ -66,5 +74,5 @@ document.addEventListener("DOMContentLoaded", function () {
         todoList.append(newTodo);
 
         newTodoTextField.value = "";
-    })
-})
+    });
+});

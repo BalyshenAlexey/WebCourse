@@ -25,7 +25,7 @@
 }
 
 .delete-button {
-    margin-left: 5px;
+    margin-left: 13px;
 }
 
 .edit-button {
@@ -40,6 +40,21 @@
     margin-left: 5px;
 }
 
-.todo-item + .todo-item{
- margin-top: 10px;
+.todo-item + .todo-item {
+    margin-top: 10px;
 }
+
+.todo-item > button {
+    width: 110px;
+}
+
+.todo-item-text {
+    display: inline-block;
+    vertical-align: top;
+    width: 80vw;
+}
+
+.edit-text-field {
+    width: 80vw;
+}
+
