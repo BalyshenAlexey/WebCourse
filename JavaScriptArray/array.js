@@ -21,7 +21,9 @@
     console.log("Подмассив из последних 5 элементов массива чисел: " + getLastElements(numbersArray, 5).join(", "));
 
     function getEvenNumbersSum(numbersArray) {
-        return numbersArray.reduce((sum, number) => {
+        return numbersArray.reduce((currentSum, number) => {
+            let sum = currentSum;
+
             if (number % 2 === 0) {
                 sum += number;
             }
@@ -42,7 +44,7 @@
 
     function getEvenNumbersSquaresArray(numbersArray) {
         return numbersArray.filter(number => number % 2 === 0)
-                            .map(number => Math.pow(number, 2));
+            .map(number => number * number);
     }
 
     console.log("Список квадратов четных чисел из массива 2: " + getEvenNumbersSquaresArray(oneUpToOneHundredNumbersArray).join(", "));
