@@ -16,12 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const newTodo = document.createElement("li");
         newTodo.classList.add("todo-item");
+        newTodo.classList.add("clearfix");
 
         function setViewMode() {
             newTodo.innerHTML = `
                     <span class="todo-item-text"></span>
-                    <button class="delete-button" type="button">Удалить</button>
-                    <button class="edit-button" type="button">Редактировать</button>
+                    <div class="buttons-block">
+                        <button class="delete-button" type="button">Удалить</button>
+                        <button class="edit-button" type="button">Редактировать</button>
+                    </div>      
             `;
 
             newTodo.querySelector(".todo-item-text").textContent = newTodoText;
@@ -33,8 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
             newTodo.querySelector(".edit-button").addEventListener("click", function () {
                 newTodo.innerHTML = `
                         <input type="text" class="edit-text-field">
-                        <button class="save-button" type="button">Сохранить</button>
-                        <button class="cancel-button" type="button">Отменить</button>
+                        <div class="buttons-block">
+                            <button class="save-button" type="button">Сохранить</button>
+                            <button class="cancel-button" type="button">Отменить</button>
+                        </div>
                         <div class="error-message">Необходимо указать текст</div>
                 `;
 
