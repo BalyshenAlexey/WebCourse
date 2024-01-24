@@ -21,11 +21,9 @@
     console.log("Подмассив из последних 5 элементов массива чисел: " + getLastElements(numbersArray, 5).join(", "));
 
     function getEvenNumbersSum(numbersArray) {
-        return numbersArray.reduce((currentSum, number) => {
-            let sum = currentSum;
-
+        return numbersArray.reduce((sum, number) => {
             if (number % 2 === 0) {
-                sum += number;
+                return sum + number;
             }
 
             return sum;
