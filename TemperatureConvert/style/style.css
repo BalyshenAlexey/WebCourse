@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+.temperature-convert-form > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.heading {
+    margin: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.temperature-convert-form{
+    margin: 15px;
+}
+
+.resulting-scales{
+    margin-top: 10px;
+}
+
+.result-heading{
+    margin: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.result{
+    margin: 15px;
+}
+
+.error-message {
+    color: #f00;
+}
+
+.invalid {
+    border-color: #f00;
+}
+
+.convert-button {
+    margin-left: 5px;
+    cursor: pointer;
+}
