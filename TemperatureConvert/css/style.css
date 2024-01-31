@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.temperature-convert-form > * {
+.temperature-converter-form > * {
     display: inline-block;
     vertical-align: top;
 }
@@ -13,21 +13,21 @@
     font-weight: bold;
 }
 
-.temperature-convert-form{
+.temperature-converter-form {
     margin: 15px;
 }
 
-.resulting-scales{
+.resulting-scales {
     margin-top: 10px;
 }
 
-.result-heading{
+.result-heading {
     margin: 15px;
     font-size: 20px;
     font-weight: bold;
 }
 
-.result{
+.result {
     margin: 15px;
 }
 

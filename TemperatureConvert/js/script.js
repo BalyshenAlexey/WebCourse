@@ -1,20 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const temperatureConvertForm = document.getElementById("temperature-convert-form");
+    const temperatureConverterForm = document.getElementById("temperature-convert-form");
     const celsiusTemperatureField = document.getElementById("celsius-temperature-field");
     const resultField = document.getElementById("result");
     const radioButtons = document.querySelectorAll(".radio-button");
 
-    temperatureConvertForm.addEventListener("submit", function (e) {
+    temperatureConverterForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const celsiusTemperatureInString = celsiusTemperatureField.value.trim();
-
-        celsiusTemperatureField.value = "";
+        const celsiusTemperatureString = celsiusTemperatureField.value.trim();
 
         celsiusTemperatureField.classList.remove("invalid");
         resultField.classList.remove("error-message");
 
-        if (celsiusTemperatureInString.length === 0) {
+        if (celsiusTemperatureString.length === 0) {
             celsiusTemperatureField.classList.add("invalid");
             resultField.classList.add("error-message");
 
@@ -23,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const celsiusTemperature = Number(celsiusTemperatureInString);
+        const celsiusTemperature = Number(celsiusTemperatureString);
 
         if (isNaN(celsiusTemperature)) {
             celsiusTemperatureField.classList.add("invalid");
