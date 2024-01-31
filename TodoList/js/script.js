@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const newTodo = document.createElement("li");
-        newTodo.classList.add("todo-item");
-        newTodo.classList.add("clearfix");
+        newTodo.classList.add("todo-item", "clearfix");
 
         function setViewMode() {
             newTodo.innerHTML = `
