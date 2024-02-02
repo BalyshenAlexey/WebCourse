@@ -15,13 +15,13 @@
 <div class="todo-list-page container">
     <h1 class="heading">TODO List</h1>
 
-    <form class="add-todo-form" id="add-todo-form">
-        <div>
-            <input class="new-todo-text-field form-text" id="new-todo-text-field" type="text">
+    <form class="add-todo-form row" id="add-todo-form">
+        <div class="col">
+            <input class="new-todo-text-field form-text form-control" id="new-todo-text-field" type="text">
             <div class="error-message">Необходимо указать текст</div>
         </div>
 
-        <button class="add-button btn btn-success float-end" id="add-button">Добавить</button>
+        <button class="add-button btn btn-success float-end col-auto" id="add-button">Добавить</button>
     </form>
 
     <ul class="todo-list list-group" id="todo-list"></ul>
