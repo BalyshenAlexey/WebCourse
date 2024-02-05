@@ -18,13 +18,14 @@
     <form class="add-todo-form row" id="add-todo-form">
         <div class="col">
             <input class="new-todo-text-field form-text form-control" id="new-todo-text-field" type="text">
-            <div class="error-message">Необходимо указать текст</div>
         </div>
 
         <button class="add-button btn btn-success float-end col-auto" id="add-button">Добавить</button>
+
+        <div class="error-message d-none text-danger">Необходимо указать текст</div>
     </form>
 
-    <ul class="todo-list list-group" id="todo-list"></ul>
+    <ul class="todo-list mt-3" id="todo-list"></ul>
 </div>
 </body>
 </html>
