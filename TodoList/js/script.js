@@ -19,11 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function setViewMode() {
             newTodo.innerHTML = `
-                    <span class="todo-item-text"></span>
                     <div class="buttons-block">
                         <button class="delete-button" type="button">Удалить</button>
                         <button class="edit-button" type="button">Редактировать</button>
-                    </div>      
+                    </div>    
+                    <div class="wide-block">
+                        <span class="todo-item-text"></span>
+                    </div>
             `;
 
             newTodo.querySelector(".todo-item-text").textContent = newTodoText;
@@ -34,12 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             newTodo.querySelector(".edit-button").addEventListener("click", function () {
                 newTodo.innerHTML = `
-                        <input type="text" class="edit-text-field">
                         <div class="buttons-block">
                             <button class="save-button" type="button">Сохранить</button>
                             <button class="cancel-button" type="button">Отменить</button>
                         </div>
-                        <div class="error-message">Необходимо указать текст</div>
+                        <div class="wide-block">
+                            <input type="text" class="edit-text-field">
+                            <span class="error-message">Необходимо указать текст</span>
+                        </div>
                 `;
 
                 const editTextField = newTodo.querySelector(".edit-text-field");

@@ -3,14 +3,8 @@
 }
 
 .todo-list-page {
-    max-width: 70vw;
+    max-width: 90vw;
     margin: auto;
-}
-
-.add-todo-form > * {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 15px;
 }
 
 .error-message {
@@ -33,17 +27,18 @@
 }
 
 .new-todo-text-field {
-    width: calc(70vw - 147px);
+    width: 100%;
 }
 
 .add-button {
     width: 110px;
-    margin-left: 3px;
+    margin-left: 5px;
+    float: right;
 }
 
 .todo-list {
-    margin: 15px;
-    max-width: 70vw;
+    margin-top: 15px;
+    max-width: 90vw;
 }
 
 .todo-item:nth-child(odd) {
@@ -55,6 +50,7 @@
 }
 
 .buttons-block {
+    margin-left: 5px;
     float: right;
 }
 
@@ -63,13 +59,15 @@
 }
 
 .todo-item-text {
-    display: inline-block;
-    width: calc(100% - 230px);
+    width: 100%;
 }
 
 .edit-text-field {
-    display: inline-block;
-    width: calc(100% - 230px);
+    width: 100%;
+}
+
+.wide-block {
+    overflow: hidden;
 }
 
 .clearfix::after {
