@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const temperatureConverterForm = document.getElementById("temperature-convert-form");
+    const temperatureConverterForm = document.getElementById("temperature-converter-form");
     const celsiusTemperatureField = document.getElementById("celsius-temperature-field");
     const resultField = document.getElementById("result");
     const radioButtons = document.querySelectorAll(".radio-button");
