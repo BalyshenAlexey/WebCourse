@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TODO List</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <script defer src="node_modules/jquery/dist/jquery.js"></script>
     <script defer src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -15,17 +13,17 @@
 <div class="todo-list-page container">
     <h1 class="heading">TODO List</h1>
 
-    <form class="add-todo-form row" id="add-todo-form">
-        <div class="col">
-            <input class="new-todo-text-field form-text form-control" id="new-todo-text-field" type="text">
+    <form class="add-todo-form row m-0" id="add-todo-form">
+        <div class="col ps-0">
+            <input class="new-todo-text-field form-text form-control m-0" id="new-todo-text-field" type="text">
+            <span class="invalid-feedback">Необходимо указать текст</span>
         </div>
-
-        <button class="add-button btn btn-success float-end col-auto" id="add-button">Добавить</button>
-
-        <div class="error-message d-none text-danger">Необходимо указать текст</div>
+        <div class="col-auto pe-0">
+            <button class="add-button btn btn-success col-auto" id="add-button">Добавить</button>
+        </div>
     </form>
 
-    <ul class="todo-list mt-3" id="todo-list"></ul>
+    <ul class="todo-list list-unstyled mt-3" id="todo-list"></ul>
 </div>
 </body>
 </html>
