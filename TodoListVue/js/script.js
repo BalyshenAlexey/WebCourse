@@ -13,20 +13,20 @@ Vue.createApp({})
             addTodoItem() {
                 if (this.newTodoItemText.length === 0) {
                     this.isValidItemText = false;
-                } else {
-                    const newTodoItem = {
-                        id: this.newTodoItemId,
-                        text: this.newTodoItemText
-                    };
 
-                    this.isValidItemText = true;
-
-                    this.newTodoItemId++;
-
-                    this.items.push(newTodoItem);
-
-                    this.newTodoItemText = "";
+                    return;
                 }
+
+                const newTodoItem = {
+                    id: this.newTodoItemId,
+                    text: this.newTodoItemText
+                };
+
+                this.newTodoItemId++;
+                this.newTodoItemText = "";
+                this.isValidItemText = true;
+
+                this.items.push(newTodoItem);
             },
 
             deleteTodoItem(item) {
@@ -35,18 +35,20 @@ Vue.createApp({})
         },
 
         template: `
-          <form @submit.prevent="addTodoItem" class="row mb-3">
-            <label class="col">
-              <input class="form-text form-control" type="text" v-model.trim="newTodoItemText"
-                     v-bind:class="{'is-invalid': !isValidItemText}">
-            </label>
-
-            <button class="col-auto add-button btn btn-success">Добавить</button>
-
-            <span v-if="!isValidItemText" class="text-danger">Необходимо указать текст</span>
+          <form @submit.prevent="addTodoItem" class="row m-0">
+            <div class="col ps-0">
+              <input class="form-text form-control m-0"
+                     type="text"
+                     v-model.trim="newTodoItemText"
+                     :class="{'is-invalid': !isValidItemText}">
+              <span class="invalid-feedback">Необходимо указать текст</span>
+            </div>
+            <div class="col-auto pe-0">
+              <button class="add-button btn btn-success">Добавить</button>
+            </div>
           </form>
 
-          <ul class="list-unstyled">
+          <ul class="list-unstyled mt-3">
             <todo-list-item v-for="item in items"
                             :key="item.id"
                             :item="item"
@@ -62,6 +64,11 @@ Vue.createApp({})
             }
         },
 
+        emits: [
+            "save-item",
+            "delete-item"
+        ],
+
         data() {
             return {
                 isEditing: false,
@@ -74,40 +81,47 @@ Vue.createApp({})
             save() {
                 if (this.editingText.length === 0) {
                     this.isValidEditingText = false;
-                } else {
-                    this.isEditing = false;
-                    this.isValidEditingText = true;
 
-                    this.$emit("save-item", this.editingText);
+                    return;
                 }
+
+                this.isEditing = false;
+                this.isValidEditingText = true;
+
+                this.$emit("save-item", this.editingText);
             },
 
             cancel() {
                 this.isEditing = false;
+                this.isValidEditingText = true;
                 this.editingText = this.item.text;
             }
         },
 
         template: `
-          <li class="mb-2 ms-3">
-            <div class="row" v-if="!isEditing">
-              <span class="col me-2">{{ item.text }}</span>
-              
+          <li class="mb-2">
+            <div v-if="!isEditing" class="row">
+              <div class="col">
+                <span>{{ item.text }}</span>
+              </div>
               <div class="col-auto">
-                <button @click="$emit('delete-item')" class="btn btn-danger me-2" type="button">Удалить</button>
+                <button @click="$emit('delete-item')" class="btn btn-danger me-1" type="button">Удалить</button>
                 <button @click="isEditing = true" class="btn btn-primary" type="button">Редактировать</button>
               </div>
             </div>
-            <div class="row" v-else>
-              <input type="text" class="form-control col me-2" v-model.trim="editingText"
-                     v-bind:class="{'is-invalid': !isValidEditingText}">
-              
+            <div v-else class="row">
+              <div class="col">
+                <input type="text"
+                       class="form-control"
+                       v-model.trim="editingText"
+                       :class="{'is-invalid': !isValidEditingText}"
+                       @keydown.enter="save">
+                <span class="invalid-feedback">Необходимо указать текст</span>
+              </div>
               <div class="col-auto">
-                <button @click="save" class="btn btn-success me-2" type="button">Сохранить</button>
+                <button @click="save" class="btn btn-success me-1" type="button">Сохранить</button>
                 <button @click="cancel" class="btn btn-danger" type="button">Отменить</button>
               </div>
-              
-              <span v-if="!isValidEditingText" class="text-danger">Необходимо указать текст</span>
             </div>
           </li>`
     })
