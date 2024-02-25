@@ -60,7 +60,7 @@ Vue.createApp({})
 
         computed: {
             averageAge: function () {
-                return _.sumBy(this.people, "age") / _.size(this.people);
+                return _.meanBy(this.people, "age");
             },
 
             twentyToThirtyAgePeople: function () {
@@ -73,17 +73,15 @@ Vue.createApp({})
             uniqueNames: function () {
                 return _.chain(this.people)
                     .filter(p => p.age >= 20 && p.age <= 30)
+                    .uniqBy("name")
                     .orderBy("name", "desc")
                     .map("name")
-                    .uniq()
                     .value();
             },
 
-            uniqueNamesCounts() {
-                return _.chain(this.people)
-                    .countBy("name")
-                    .value();
-            },
+            namesCounts() {
+                return _.countBy(this.people, "name");
+            }
         },
 
         template: `
@@ -91,9 +89,9 @@ Vue.createApp({})
             <h2>Список людей</h2>
 
             <ul class="list-unstyled">
-              <li v-for="p in people" class="row">
-                <div class="col-3">{{ p.name }}</div>
-                <div class="col-auto">{{ p.age }}</div>
+              <li v-for="person in people" :key="person.id" class="row">
+                <div class="col-3">{{ person.name }}</div>
+                <div class="col-auto">{{ person.age }}</div>
               </li>
             </ul>
           </div>
@@ -108,11 +106,11 @@ Vue.createApp({})
                 Список людей с возрастом от 20 до 30 включительно, отсортированный по возрастанию возраста:
               </div>
               <ul class="list-unstyled">
-                <li v-for="p in twentyToThirtyAgePeople"
-                    :key="p.id"
+                <li v-for="person in twentyToThirtyAgePeople"
+                    :key="person.id"
                     class="row">
-                  <div class="col-3">{{ p.name }}</div>
-                  <div class="col-auto">{{ p.age }}</div>
+                  <div class="col-3">{{ person.name }}</div>
+                  <div class="col-auto">{{ person.age }}</div>
                 </li>
               </ul>
 
@@ -120,13 +118,13 @@ Vue.createApp({})
                 Список уникальных имен людей с возрастом от 20 до 30 включительно, отсортированный по убыванию:
               </div>
               <ul class="list-unstyled">
-                <li v-for="p in uniqueNames" :key="p">{{ p }}</li>
+                <li v-for="name in uniqueNames" :key="name">{{ name }}</li>
               </ul>
 
               <div>
                 Объект, в котором ключи - имена людей, а значения – количество людей с этим именем:
               </div>
-              <div>{{ uniqueNamesCounts }}</div>
+              <div>{{ namesCounts }}</div>
             </div>
           </div>
         `
