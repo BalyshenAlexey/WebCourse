@@ -73,9 +73,10 @@ Vue.createApp({})
             uniqueNames: function () {
                 return _.chain(this.people)
                     .filter(p => p.age >= 20 && p.age <= 30)
-                    .uniqBy("name")
-                    .orderBy("name", "desc")
                     .map("name")
+                    .uniq()
+                    .sortBy()
+                    .reverse()
                     .value();
             },
 
@@ -118,7 +119,7 @@ Vue.createApp({})
                 Список уникальных имен людей с возрастом от 20 до 30 включительно, отсортированный по убыванию:
               </div>
               <ul class="list-unstyled">
-                <li v-for="name in uniqueNames" :key="name">{{ name }}</li>
+                <li v-for="name in uniqueNames" :key="name">{{ uniqueNames }}</li>
               </ul>
 
               <div>
