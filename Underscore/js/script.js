@@ -119,7 +119,7 @@ Vue.createApp({})
                 Список уникальных имен людей с возрастом от 20 до 30 включительно, отсортированный по убыванию:
               </div>
               <ul class="list-unstyled">
-                <li v-for="name in uniqueNames" :key="name">{{ uniqueNames }}</li>
+                <li v-for="name in uniqueNames" :key="name">{{ name }}</li>
               </ul>
 
               <div>
