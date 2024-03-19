@@ -1,4 +1,5 @@
 import axios from "axios";
+
 function executeGet(url, data) {
     return axios.get(url, {
         params: data
@@ -34,7 +35,7 @@ export default class PhoneBookService {
         return executeDelete(`${this.baseUrl}/${id}`);
     }
 
-    editContact(contact) {
+    saveContact(contact) {
         return executePut(this.baseUrl, contact)
     }
 };

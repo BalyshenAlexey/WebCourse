@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 let contacts = [];
@@ -9,7 +9,7 @@ router.get("/api/contacts", function (req, res) {
 
     const result = term.length === 0
         ? contacts
-        : contacts.filter(c => c.name.toUpperCase().includes(term) || c.phone.toUpperCase().includes(term) || c.surname.toUpperCase().includes(term))
+        : contacts.filter(c => c.name.toUpperCase().includes(term) || c.phone.toUpperCase().includes(term) || c.surname.toUpperCase().includes(term));
 
     res.send(result);
 });
@@ -29,23 +29,22 @@ router.post("/api/contacts", function (req, res) {
     const contact = {
         name: req.body.name,
         surname: req.body.surname,
-        phone: req.body.phone,
-        isEditing: req.body.isEditing
+        phone: req.body.phone
     };
 
     if (!contact.name) {
         res.send({
             success: false,
-            message: "Поле 'Имя' обязательно для заполнения"
+            message: "Поле \"Имя\" обязательно для заполнения"
         });
 
         return;
     }
 
-    if (!contact.phone) {
+    if (!contact.surname) {
         res.send({
             success: false,
-            message: "Поле 'Фамилия' обязательно для заполнения"
+            message: "Поле \"Фамилия\" обязательно для заполнения"
         });
 
         return;
@@ -79,16 +78,16 @@ router.put("/api/contacts", function (req, res) {
     if (!req.body.name) {
         res.send({
             success: false,
-            message: "Поле 'Имя' обязательно для заполнения"
+            message: "Поле \"Имя\" обязательно для заполнения"
         });
 
         return;
     }
 
-    if (!req.body.phone) {
+    if (!req.body.surname) {
         res.send({
             success: false,
-            message: "Поле 'Фамилия' обязательно для заполнения"
+            message: "Поле \"Фамилия\" обязательно для заполнения"
         });
 
         return;
@@ -96,8 +95,7 @@ router.put("/api/contacts", function (req, res) {
 
     const upperCasePhone = req.body.phone.toUpperCase();
 
-    if (contacts.filter(c => c.id !== id)
-        .some(c => c.phone.toUpperCase() === upperCasePhone)) {
+    if (contacts.some(c => c.id !== id && c.phone.toUpperCase() === upperCasePhone)) {
         res.send({
             success: false,
             message: "Контакт с таким номером уже существует"
