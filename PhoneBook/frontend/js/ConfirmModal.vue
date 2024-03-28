@@ -10,10 +10,7 @@
                 </div>
                 <div class="modal-body" v-text="message"></div>
                 <div class="modal-footer">
-                    <button @click="onOk" type="button" class="btn btn-success">
-                        <slot name="confirm-button"></slot>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <slot name="buttons"></slot>
                 </div>
             </div>
         </div>
@@ -25,6 +22,8 @@ import {Modal} from "bootstrap";
 
 export default {
     name: "ConfirmModal",
+
+    emits: ["deleteContact", "deleteCheckedContacts"],
 
     data() {
         return {
@@ -45,10 +44,6 @@ export default {
 
         hide() {
             this.modal.hide();
-        },
-
-        onOk() {
-            this.$emit("ok");
         }
     }
 };

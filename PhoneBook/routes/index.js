@@ -50,6 +50,15 @@ router.post("/api/contacts", function (req, res) {
         return;
     }
 
+    if (!contact.phone) {
+        res.send({
+            success: false,
+            message: "Поле \"Номер телефона\" обязательно для заполнения"
+        });
+
+        return;
+    }
+
     const upperCasePhone = contact.phone.toUpperCase();
 
     if (contacts.some(c => c.phone.toUpperCase() === upperCasePhone)) {
@@ -88,6 +97,15 @@ router.put("/api/contacts", function (req, res) {
         res.send({
             success: false,
             message: "Поле \"Фамилия\" обязательно для заполнения"
+        });
+
+        return;
+    }
+
+    if (!req.body.phone) {
+        res.send({
+            success: false,
+            message: "Поле \"Номер телефона\" обязательно для заполнения"
         });
 
         return;
