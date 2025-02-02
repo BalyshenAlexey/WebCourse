@@ -164,22 +164,6 @@
             </template>
         </confirm-modal>
 
-        <confirm-modal ref="deleteCheckedContactsConfirmModal">
-            <template #header>Подтвердите удаление</template>
-            <template #buttons>
-                <button @click="deleteContacts"
-                        type="button"
-                        class="btn btn-danger">
-                    Удалить
-                </button>
-                <button type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Отмена
-                </button>
-            </template>
-        </confirm-modal>
-
         <confirm-modal ref="errorConfirmModal" @ok="this.$refs.errorConfirmModal.hide()">
             <template #header>Ошибка!</template>
             <template #buttons>
@@ -221,7 +205,7 @@ export default {
     },
 
     computed: {
-        checkedContacts: function () {
+        checkedContacts() {
             return this.contacts.filter(contact => contact.checked);
         }
     },
@@ -255,9 +239,8 @@ export default {
             const contact = {
                 name: this.name,
                 phone: this.phone,
-                surname: this.surname,
-                checked: false
-            }
+                surname: this.surname
+            };
 
             this.service.createContact(contact).then(response => {
                 if (!response.success) {
@@ -281,7 +264,7 @@ export default {
         showDeleteCheckedContactsConfirmModal() {
             this.contactsToDelete = this.checkedContacts;
 
-            this.$refs.deleteCheckedContactsConfirmModal.show("Вы действительно хотите удалить выбранные контакты?");
+            this.$refs.deleteContactConfirmModal.show("Вы действительно хотите удалить выбранные контакты?");
         },
 
         deleteContacts() {
@@ -297,7 +280,6 @@ export default {
             });
 
             this.$refs.deleteContactConfirmModal.hide();
-            this.$refs.deleteCheckedContactsConfirmModal.hide();
             this.contactsToDelete = [];
             this.allChecked = false;
         },
@@ -323,14 +305,14 @@ export default {
                 return;
             }
 
-            const editContact = {
+            const editedContact = {
                 id: contact.id,
                 name: contact.editingName,
                 phone: contact.editingPhone,
                 surname: contact.editingSurname
-            }
+            };
 
-            this.service.saveContact(editContact).then(response => {
+            this.service.saveContact(editedContact).then(response => {
                 if (!response.success) {
                     this.$refs.errorConfirmModal.show(response.message);
                     return;

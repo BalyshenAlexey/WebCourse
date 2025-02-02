@@ -23,8 +23,6 @@ import {Modal} from "bootstrap";
 export default {
     name: "ConfirmModal",
 
-    emits: ["deleteContact", "deleteCheckedContacts"],
-
     data() {
         return {
             modal: null,
